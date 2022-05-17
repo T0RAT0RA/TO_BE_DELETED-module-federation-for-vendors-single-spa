@@ -4,6 +4,14 @@ import singleSpaVue from "single-spa-vue";
 import App from "./App.vue";
 import router from "./router";
 
+const app = createApp({
+  render() {
+    return h(App);
+  },
+});
+app.use(router);
+app.mount("#app");
+
 const vueLifecycles = singleSpaVue({
   createApp,
   appOptions: {
@@ -28,9 +36,3 @@ const vueLifecycles = singleSpaVue({
 export const bootstrap = vueLifecycles.bootstrap;
 export const mount = vueLifecycles.mount;
 export const unmount = vueLifecycles.unmount;
-
-export default {
-  bootstrap,
-  mount,
-  unmount,
-};
