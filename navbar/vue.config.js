@@ -10,15 +10,15 @@ module.exports = defineConfig({
     // },
     plugins: [
       new ModuleFederationPlugin({
+        name: "NavbarScope",
         filename: "remoteEntry.js",
-        name: "ROB_NAVBAR",
-        exposes: [
-          {
-            App: "./src/App.vue",
-          },
-        ],
+        exposes: {
+          "./ApplicationPage": "./src/App",
+          "./AboutPage": "./src/views/AboutView",
+        },
         shared: [
           {
+            ...deps,
             vue: {
               requiredVersion: deps.vue,
               singleton: true,
